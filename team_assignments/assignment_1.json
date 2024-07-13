@@ -1,0 +1,92 @@
+[
+    {
+        "character": {
+            "name": "mage",
+            "stats": {
+                "hp": 82,
+                "armor": 4,
+                "magic_resistance": 3,
+                "physical_power": 24,
+                "magic_power": 63,
+                "special_trigger_chance": 61
+            }
+        },
+        "items": [
+            {
+                "name": "enchanted_sword",
+                "stats": {
+                    "physical_power": 6,
+                    "magic_power": 0
+                }
+            },
+            {
+                "name": "solid_rock",
+                "stats": {
+                    "armor": 31,
+                    "magic_resistance": 35
+                }
+            }
+        ]
+    },
+    {
+        "character": {
+            "name": "mage",
+            "stats": {
+                "hp": 79,
+                "armor": 2,
+                "magic_resistance": 1,
+                "physical_power": 26,
+                "magic_power": 63,
+                "special_trigger_chance": 56
+            }
+        }
+    },
+    {
+        "character": {
+            "name": "warrior",
+            "stats": {
+                "hp": 216,
+                "armor": 24,
+                "magic_resistance": 45,
+                "physical_power": 24,
+                "magic_power": 5,
+                "special_trigger_chance": 19
+            }
+        },
+        "items": [
+            {
+                "name": "solid_rock",
+                "stats": {
+                    "armor": 20,
+                    "magic_resistance": 32
+                }
+            }
+        ]
+    },
+    {
+        "character": {
+            "name": "warrior",
+            "stats": {
+                "hp": 200,
+                "armor": 20,
+                "magic_resistance": 44,
+                "physical_power": 23,
+                "magic_power": 3,
+                "special_trigger_chance": 16
+            }
+        }
+    },
+    {
+        "character": {
+            "name": "ninja",
+            "stats": {
+                "hp": 75,
+                "armor": 5,
+                "magic_resistance": 2,
+                "physical_power": 60,
+                "magic_power": 4,
+                "special_trigger_chance": 14
+            }
+        }
+    }
+]
