@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def read_data(team_assignment: Path):
     print(team_assignment.resolve())
 
@@ -15,4 +16,4 @@ if __name__ == "__main__":
                         required=False)
     args = parser.parse_args()
     team_assignment = Path(args.team_assignment)
-    read_data(team_assignment = team_assignment)
+    read_data(team_assignment=team_assignment)
