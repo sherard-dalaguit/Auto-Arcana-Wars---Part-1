@@ -105,7 +105,7 @@ class BaseItem(abc.ABC):
 		return the passive name of the item as a string.
 
 		Returns:
-			str: The passive name of the item.
+			str: The name and passive effect of the item.
 		"""
 		pass
 
