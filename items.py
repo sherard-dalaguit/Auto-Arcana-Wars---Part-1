@@ -3,12 +3,26 @@ from utils import Stats, BaseItem
 
 class EnchantedSword(BaseItem):
 	def name(self) -> str:
+		"""Returns the name of the item."""
 		return "Enchanted Sword"
 
 	def passive_name(self) -> str:
+		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: Lucky Strike"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
+		"""
+		Calculates the effective stats after equipping the item.
+
+		The new stats will be based on the base character stats and
+		the passive ability effects if the passive is active.
+
+		Args:
+			base_character_stats (Stats): The basic character stats before equipping the item
+
+		Returns:
+			Stats: The new character stats after equipping the item.
+		"""
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		if self.is_passive_active:
@@ -19,12 +33,26 @@ class EnchantedSword(BaseItem):
 
 class ShinyStaff(BaseItem):
 	def name(self) -> str:
+		"""Returns the name of the item."""
 		return "Shiny Staff"
 
 	def passive_name(self) -> str:
+		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: Blessings of Echo"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
+		"""
+		Calculates the effective stats after equipping the item.
+
+		The new stats will be based on the base character stats and
+		the passive ability effects if the passive is active.
+
+		Args:
+			base_character_stats (Stats): The basic character stats before equipping the item
+
+		Returns:
+			Stats: The new character stats after equipping the item.
+		"""
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		if self.is_passive_active:
@@ -35,12 +63,26 @@ class ShinyStaff(BaseItem):
 
 class Pole(BaseItem):
 	def name(self) -> str:
+		"""Returns the name of the item."""
 		return "Pole"
 
 	def passive_name(self) -> str:
+		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: No passive abilities"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
+		"""
+		Calculates the effective stats after equipping the item.
+
+		The new stats will be based on the base character stats and
+		the passive ability effects if the passive is active.
+
+		Args:
+			base_character_stats (Stats): The basic character stats before equipping the item
+
+		Returns:
+			Stats: The new character stats after equipping the item.
+		"""
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		return new_stats
@@ -48,12 +90,26 @@ class Pole(BaseItem):
 
 class MagicCauldron(BaseItem):
 	def name(self) -> str:
+		"""Returns the name of the item."""
 		return "Magic Cauldron"
 
 	def passive_name(self) -> str:
+		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: Potion of Life"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
+		"""
+		Calculates the effective stats after equipping the item.
+
+		The new stats will be based on the base character stats and
+		the passive ability effects if the passive is active.
+
+		Args:
+			base_character_stats (Stats): The basic character stats before equipping the item
+
+		Returns:
+			Stats: The new character stats after equipping the item.
+		"""
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		if self.is_passive_active:
@@ -65,12 +121,26 @@ class MagicCauldron(BaseItem):
 
 class SolidRock(BaseItem):
 	def name(self) -> str:
+		"""Returns the name of the item."""
 		return "Solid Rock"
 
 	def passive_name(self) -> str:
+		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: No passive abilities"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
+		"""
+		Calculates the effective stats after equipping the item.
+
+		The new stats will be based on the base character stats and
+		the passive ability effects if the passive is active.
+
+		Args:
+			base_character_stats (Stats): The basic character stats before equipping the item
+
+		Returns:
+			Stats: The new character stats after equipping the item.
+		"""
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		return new_stats
