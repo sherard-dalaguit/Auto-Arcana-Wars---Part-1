@@ -2,15 +2,11 @@ from utils import Stats, BaseItem
 
 
 class EnchantedSword(BaseItem):
-	def __init__(self, base_item_stats: Stats, is_passive_active: bool) -> None:
-		super().__init__(base_item_stats, is_passive_active)
-		self._name = "Enchanted Sword"
-
 	def name(self) -> str:
-		return f"{self._name}"
+		return "Enchanted Sword"
 
 	def passive_name(self) -> str:
-		return f"{self._name}: Lucky Strike"
+		return f"{self.name}: Lucky Strike"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
@@ -22,15 +18,11 @@ class EnchantedSword(BaseItem):
 
 
 class ShinyStaff(BaseItem):
-	def __init__(self, base_item_stats: Stats, is_passive_active: bool) -> None:
-		super().__init__(base_item_stats, is_passive_active)
-		self._name = "Shiny Staff"
-
 	def name(self) -> str:
-		return f"{self._name}"
+		return "Shiny Staff"
 
 	def passive_name(self) -> str:
-		return f"{self._name}: Blessings of Echo"
+		return f"{self.name}: Blessings of Echo"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
@@ -42,15 +34,11 @@ class ShinyStaff(BaseItem):
 
 
 class Pole(BaseItem):
-	def __init__(self, base_item_stats: Stats, is_passive_active: bool) -> None:
-		super().__init__(base_item_stats, is_passive_active)
-		self._name = "Pole"
-
 	def name(self) -> str:
-		return f"{self._name}"
+		return "Pole"
 
 	def passive_name(self) -> str:
-		return f"{self._name}: No passive abilities"
+		return f"{self.name}: No passive abilities"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
@@ -59,15 +47,11 @@ class Pole(BaseItem):
 
 
 class MagicCauldron(BaseItem):
-	def __init__(self, base_item_stats: Stats, is_passive_active: bool) -> None:
-		super().__init__(base_item_stats, is_passive_active)
-		self._name = "Magic Cauldron"
-
 	def name(self) -> str:
-		return f"{self._name}"
+		return "Magic Cauldron"
 
 	def passive_name(self) -> str:
-		return f"{self._name}: Potion of Life"
+		return f"{self.name}: Potion of Life"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
@@ -80,15 +64,11 @@ class MagicCauldron(BaseItem):
 
 
 class SolidRock(BaseItem):
-	def __init__(self, base_item_stats: Stats, is_passive_active: bool) -> None:
-		super().__init__(base_item_stats, is_passive_active)
-		self._name = "Solid Rock"
-
 	def name(self) -> str:
-		return f"{self._name}"
+		return "Solid Rock"
 
 	def passive_name(self) -> str:
-		return f"{self._name}: No passive abilities"
+		return f"{self.name}: No passive abilities"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
