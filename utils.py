@@ -30,7 +30,7 @@ class Stats(NamedTuple):
 
 		updated_current_hp = min(self.current_hp + changes.current_hp, self.total_hp + changes.total_hp)
 		updated_total_hp = self.total_hp + changes.total_hp
-		updated_armor = self.armor + changes.armor
+		updated_armor = max((self.armor + changes.armor),0)
 		updated_magic_resistance = self.magic_resistance + changes.magic_resistance
 		updated_physical_power = self.physical_power + changes.physical_power
 		updated_magic_power = self.magic_power + changes.magic_power
