@@ -7,7 +7,7 @@ class EnchantedSword(BaseItem):
 		return "Enchanted Sword"
 
 	def passive_name(self) -> str:
-		"""Returns the name of the item and its special ability"""
+		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: Lucky Strike"
 
 	def is_unique_passive(self) -> bool:
@@ -41,7 +41,7 @@ class ShinyStaff(BaseItem):
 		return "Shiny Staff"
 
 	def passive_name(self) -> str:
-		"""Returns the name of the item and its special ability"""
+		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: Blessings of Echo"
 
 	def is_unique_passive(self) -> bool:
@@ -75,7 +75,7 @@ class Pole(BaseItem):
 		return "Pole"
 
 	def passive_name(self) -> str:
-		"""Returns the name of the item and its special ability"""
+		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: No passive abilities"
 
 	def is_unique_passive(self) -> bool:
@@ -106,7 +106,7 @@ class MagicCauldron(BaseItem):
 		return "Magic Cauldron"
 
 	def passive_name(self) -> str:
-		"""Returns the name of the item and its special ability"""
+		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: Potion of Life"
 
 	def is_unique_passive(self) -> bool:
