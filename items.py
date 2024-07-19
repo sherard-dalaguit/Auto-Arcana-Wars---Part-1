@@ -10,6 +10,10 @@ class EnchantedSword(BaseItem):
 		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: Lucky Strike"
 
+	def is_unique_passive(self) -> bool:
+		"""Returns whether an item has a unique passive effect."""
+		return True
+
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
 		Calculates the effective stats after equipping the item.
@@ -39,6 +43,10 @@ class ShinyStaff(BaseItem):
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: Blessings of Echo"
+
+	def is_unique_passive(self) -> bool:
+		"""Returns whether an item has a unique passive effect."""
+		return False
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
@@ -70,6 +78,10 @@ class Pole(BaseItem):
 		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: No passive abilities"
 
+	def is_unique_passive(self) -> bool:
+		"""Returns whether an item has a unique passive effect."""
+		return False
+
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
 		Calculates the effective stats after equipping the item.
@@ -96,6 +108,10 @@ class MagicCauldron(BaseItem):
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability"""
 		return f"{self.name}: Potion of Life"
+
+	def is_unique_passive(self) -> bool:
+		"""Returns whether an item has a unique passive effect."""
+		return True
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
@@ -125,8 +141,12 @@ class SolidRock(BaseItem):
 		return "Solid Rock"
 
 	def passive_name(self) -> str:
-		"""Returns the name of the item and its special ability"""
+		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: No passive abilities"
+
+	def is_unique_passive(self) -> bool:
+		"""Returns whether an item has a unique passive effect."""
+		return False
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
