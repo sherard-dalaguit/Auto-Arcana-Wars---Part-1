@@ -30,7 +30,7 @@ class Stats(NamedTuple):
 
 		updated_current_hp = min(self.current_hp + changes.current_hp, self.total_hp + changes.total_hp)
 		updated_total_hp = self.total_hp + changes.total_hp
-		updated_armor = max((self.armor + changes.armor),0)
+		updated_armor = max((self.armor + changes.armor), 0)
 		updated_magic_resistance = self.magic_resistance + changes.magic_resistance
 		updated_physical_power = self.physical_power + changes.physical_power
 		updated_magic_power = self.magic_power + changes.magic_power
@@ -176,8 +176,8 @@ class BaseCharacter(abc.ABC):
         items (list[BaseItem]): items held by the character
     """
 
-	def __init__(self, base_stats: Stats, added_item_stats: Stats = None,
-				 effective_stats: Stats = None, items: list[BaseItem] = None):
+	def __init__(self, base_stats: Stats, added_item_stats: Stats = Stats(),
+				 effective_stats: Stats = Stats(), items: list[BaseItem] = None):
 		"""
 		Initialize BaseCharacter with base stats, added stats, effective stats and items.
 
@@ -235,7 +235,7 @@ class BaseCharacter(abc.ABC):
 
 		self.effective_stats = self.base_stats  # Reset effective stats to base stats
 
-		self.added_item_stats += item.base_item_stats
+		self.added_item_stats = self.added_item_stats.add_stat_changes(item.base_item_stats)
 
 		if item.is_unique_passive and item in self.items:  # Checks if character already has item
 			item.is_passive_active = False  # Removes item's special ability if item is unique passive
