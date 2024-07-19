@@ -1,4 +1,5 @@
 from typing import NamedTuple, Any
+from copy import deepcopy
 import abc
 
 
@@ -177,7 +178,7 @@ class BaseCharacter(abc.ABC):
     """
 
 	def __init__(self, base_stats: Stats, added_item_stats: Stats = Stats(),
-				 effective_stats: Stats = Stats(), items: list[BaseItem] = None):
+				 effective_stats: Stats = None, items: list[BaseItem] = None):
 		"""
 		Initialize BaseCharacter with base stats, added stats, effective stats and items.
 
@@ -192,7 +193,11 @@ class BaseCharacter(abc.ABC):
 
 		self.base_stats = base_stats
 		self.added_item_stats = added_item_stats
-		self.effective_stats = effective_stats
+
+		if effective_stats is None:
+			self.effective_stats = deepcopy(base_stats)
+		else:
+			self.effective_stats = effective_stats
 		self.items = items
 
 	@property
@@ -227,6 +232,8 @@ class BaseCharacter(abc.ABC):
 		Raises:
 	        ValueError: If character has already 3 items.
         """
+		if item.is_unique_passive and self.items.count(item) > 1:  # Checks if character already has item
+			item.is_passive_active = False  # Removes item's special ability if item is unique passive
 
 		if len(self.items) > 3:
 			raise ValueError('Too many items')
@@ -234,15 +241,11 @@ class BaseCharacter(abc.ABC):
 			self.items.append(item)
 
 		self.effective_stats = self.base_stats  # Reset effective stats to base stats
-
 		self.added_item_stats = self.added_item_stats.add_stat_changes(item.base_item_stats)
-
-		if item.is_unique_passive and item in self.items:  # Checks if character already has item
-			item.is_passive_active = False  # Removes item's special ability if item is unique passive
 
 		# Calculate effective stats for each item
 		for item in self.items:
-			self.effective_stats = item.calculate_effective_stats(self.base_stats)
+			self.effective_stats = self.effective_stats.add_stat_changes(item.calculate_effective_stats(self.base_stats))
 
 	def __str__(self) -> str:
 		"""

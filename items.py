@@ -27,12 +27,10 @@ class EnchantedSword(BaseItem):
 		Returns:
 			Stats: The new character stats after equipping the item.
 		"""
-		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		if self.is_passive_active:
-			return new_stats._replace(special_trigger_chance=5 + 1.25 * new_stats.special_trigger_chance)
-
-		return new_stats
+			return self.base_item_stats._replace(special_trigger_chance=5 + 0.25 * base_character_stats.special_trigger_chance)
+		return self.base_item_stats
 
 
 class ShinyStaff(BaseItem):
@@ -61,12 +59,10 @@ class ShinyStaff(BaseItem):
 		Returns:
 			Stats: The new character stats after equipping the item.
 		"""
-		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		if self.is_passive_active:
-			return new_stats._replace(magic_power=1 + 1.5 * new_stats.magic_power)
-
-		return new_stats
+			return self.base_item_stats._replace(magic_power=1 + 1.5 * self.base_item_stats.magic_power)
+		return self.base_item_stats
 
 
 class Pole(BaseItem):
@@ -95,9 +91,8 @@ class Pole(BaseItem):
 		Returns:
 			Stats: The new character stats after equipping the item.
 		"""
-		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
-		return new_stats
+		return self.base_item_stats
 
 
 class MagicCauldron(BaseItem):
@@ -126,13 +121,11 @@ class MagicCauldron(BaseItem):
 		Returns:
 			Stats: The new character stats after equipping the item.
 		"""
-		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
 
 		if self.is_passive_active:
-			return new_stats._replace(current_hp=10 + 1.3 * base_character_stats.total_hp,
-									  total_hp=10 + 1.3 * base_character_stats.total_hp)
-
-		return new_stats
+			return self.base_item_stats._replace(current_hp=10 + 1.3 * base_character_stats.total_hp,
+			total_hp=10 + 1.3 * base_character_stats.total_hp)
+		return self.base_item_stats
 
 
 class SolidRock(BaseItem):
@@ -161,6 +154,4 @@ class SolidRock(BaseItem):
 		Returns:
 			Stats: The new character stats after equipping the item.
 		"""
-		new_stats = base_character_stats.add_stat_changes(self.base_item_stats)
-
-		return new_stats
+		return self.base_item_stats

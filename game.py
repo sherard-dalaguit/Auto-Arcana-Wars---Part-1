@@ -18,12 +18,12 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
         stats_dict['current_hp'] = stats_dict['total_hp'] = stats_dict.pop('hp')
 
         base_stats = Stats(**stats_dict)
-        if character_data['character']['name'] == 'mage':
+        if character_data['character']['name'] == 'ninja':
+            character = Ninja(base_stats=base_stats)
+        elif character_data['character']['name'] == 'mage':
             character = Mage(base_stats=base_stats)
         elif character_data['character']['name'] == 'warrior':
             character = Warrior(base_stats=base_stats)
-        elif character_data['character']['name'] == 'ninja':
-            character = Ninja(base_stats=base_stats)
         else:
             raise ValueError(f"Unknown character type: {character_data['name']}")
 
@@ -52,18 +52,32 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
                 character.add_item(item)
 
         character_list.append(character)
+    print_character_list(character_list)
 
     return character_list
 
 
+def print_character_list(character_list):
+    for character in character_list:
+        print(f"Character Name: {character.name()}")
+        print(f"Current HP: {character.effective_stats.current_hp}")
+        print(f"Total HP: {character.effective_stats.total_hp}")
+        print(f"Armor: {character.effective_stats.armor}")
+        print(f"Magic Resistance: {character.effective_stats.magic_resistance}")
+        print(f"Physical Power: {character.effective_stats.physical_power}")
+        print(f"Magic Power: {character.effective_stats.magic_power}")
+        print(f"Special Trigger Chance: {character.effective_stats.special_trigger_chance}")
+        print("\n")
+
+
 if __name__ == "__main__":
     from argparse import ArgumentParser
-    
+
     parser = ArgumentParser()
-    parser.add_argument("--team_assignment", 
-                        type=str, 
+    parser.add_argument("--team_assignment",
+                        type=str,
                         help="The location of the team assignment file to read",
-                        default="./team_assignments/assignment_1.json",
+                        default="./team_assignments/assignment_6.json",
                         required=False)
     args = parser.parse_args()
     team_assignment = Path(args.team_assignment)
