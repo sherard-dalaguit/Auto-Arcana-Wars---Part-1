@@ -18,11 +18,11 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
         stats_dict['current_hp'] = stats_dict['total_hp'] = stats_dict.pop('hp')
 
         base_stats = Stats(**stats_dict)
-        if character_data['name'] == 'mage':
+        if character_data['character']['name'] == 'mage':
             character = Mage(base_stats=base_stats)
-        elif character_data['name'] == 'warrior':
+        elif character_data['character']['name'] == 'warrior':
             character = Warrior(base_stats=base_stats)
-        elif character_data['name'] == 'ninja':
+        elif character_data['character']['name'] == 'ninja':
             character = Ninja(base_stats=base_stats)
         else:
             raise ValueError(f"Unknown character type: {character_data['name']}")
