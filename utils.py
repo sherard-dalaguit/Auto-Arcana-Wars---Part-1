@@ -70,7 +70,7 @@ class BaseItem(abc.ABC):
 	The class serves as a contract for what each item should include
 	"""
 
-	def __init__(self, base_item_stats: Stats, is_passive_active: bool) -> None:
+	def __init__(self, base_item_stats: Stats, is_passive_active: bool = True) -> None:
 		"""
 		Initialize an instance of the BaseItem class
 
