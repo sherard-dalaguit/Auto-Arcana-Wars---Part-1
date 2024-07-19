@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import List
 from characters import BaseCharacter, Ninja, Mage, Warrior
 from items import EnchantedSword, ShinyStaff, Pole, MagicCauldron, SolidRock
+from utils import Stats
 
 
 def read_data(team_assignment: Path) -> List[BaseCharacter]:
@@ -12,34 +13,43 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
         file_data = json.load(open_file)
 
     character_list = []
-    for entry in file_data:
-        character_data = entry['character']
-        item_data_list = entry.get('items', [])
+    for character_data in file_data:
+        stats_dict = character_data['character']['stats']
+        stats_dict['current_hp'] = stats_dict['total_hp'] = stats_dict.pop('hp')
 
+        base_stats = Stats(**stats_dict)
         if character_data['name'] == 'mage':
-            character = Mage(base_stats=character_data['stats'])
+            character = Mage(base_stats=base_stats)
         elif character_data['name'] == 'warrior':
-            character = Warrior(base_stats=character_data['stats'])
+            character = Warrior(base_stats=base_stats)
         elif character_data['name'] == 'ninja':
-            character = Ninja(base_stats=character_data['stats'])
+            character = Ninja(base_stats=base_stats)
         else:
             raise ValueError(f"Unknown character type: {character_data['name']}")
 
-        for item_data in item_data_list:
-            if item_data['name'] == 'enchanted_sword':
-                item = EnchantedSword(base_item_stats=item_data['stats'])
-            elif item_data['name'] == 'shiny_staff':
-                item = ShinyStaff(base_item_stats=item_data['stats'])
-            elif item_data['name'] == 'pole':
-                item = Pole(base_item_stats=item_data['stats'])
-            elif item_data['name'] == 'magic_cauldron':
-                item = MagicCauldron(base_item_stats=item_data['stats'])
-            elif item_data['name'] == 'solid_rock':
-                item = SolidRock(base_item_stats=item_data['stats'])
-            else:
-                raise ValueError(f"Unknown item type: {item_data['name']}")
+        if 'items' in character_data:
+            for item_data in character_data['items']:
+                item_stats_dict = item_data['stats']
 
-            character.add_item(item)
+                if item_data['name'] == 'magic_cauldron':
+                    item_stats_dict['current_hp'] = item_stats_dict['total_hp'] = item_stats_dict.pop('hp', 0)
+
+                item_base_stats = Stats(**item_stats_dict)
+
+                if item_data['name'] == 'enchanted_sword':
+                    item = EnchantedSword(base_item_stats=item_base_stats)
+                elif item_data['name'] == 'shiny_staff':
+                    item = ShinyStaff(base_item_stats=item_base_stats)
+                elif item_data['name'] == 'pole':
+                    item = Pole(base_item_stats=item_base_stats)
+                elif item_data['name'] == 'magic_cauldron':
+                    item = MagicCauldron(base_item_stats=item_base_stats)
+                elif item_data['name'] == 'solid_rock':
+                    item = SolidRock(base_item_stats=item_base_stats)
+                else:
+                    raise ValueError(f"Unknown item type: {item_data['name']}")
+
+                character.add_item(item)
 
         character_list.append(character)
 
