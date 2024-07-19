@@ -208,6 +208,10 @@ class BaseCharacter(abc.ABC):
 		"""
 		pass
 
+	@abc.abstractmethod
+	def special_attack(self):
+		pass
+
 	def add_item(self, item: BaseItem) -> None:
 		"""
 		Adds an item to the character's inventory, updates the effective stats
@@ -228,8 +232,10 @@ class BaseCharacter(abc.ABC):
 
 		self.effective_stats = self.base_stats  # Reset effective stats to base stats
 
+		self.added_item_stats += item.base_item_stats
+
 		if item.is_unique_passive and item in self.items:  # Checks if character already has item
-			item.is_passive_active = False
+			item.is_passive_active = False  # Removes item's special ability if item is unique passive
 
 		# Calculate effective stats for each item
 		for item in self.items:
