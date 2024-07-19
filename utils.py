@@ -176,7 +176,8 @@ class BaseCharacter(abc.ABC):
         items (list[BaseItem]): items held by the character
     """
 
-	def __init__(self, base_stats: Stats, added_item_stats: Stats, effective_stats: Stats, items: list[BaseItem]):
+	def __init__(self, base_stats: Stats, added_item_stats: Stats = None,
+				 effective_stats: Stats = None, items: list[BaseItem] = None):
 		"""
 		Initialize BaseCharacter with base stats, added stats, effective stats and items.
 
@@ -186,6 +187,8 @@ class BaseCharacter(abc.ABC):
 			effective_stats (Stats): current stats after applying items;
 			items (list[BaseItem]): items held by the character
 		"""
+		if items is None:
+			items = []
 
 		self.base_stats = base_stats
 		self.added_item_stats = added_item_stats
