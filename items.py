@@ -60,9 +60,13 @@ class ShinyStaff(BaseItem):
 			Stats: The new character stats after equipping the item.
 		"""
 
+		effective_stats = self.base_item_stats
+
 		if self.is_passive_active:
-			return self.base_item_stats._replace(magic_power=1 + 1.5 * self.base_item_stats.magic_power)
-		return self.base_item_stats
+			added_effect = Stats(magic_power=1 + 0.5 * base_character_stats.magic_power)
+			effective_stats = effective_stats.add_stat_changes(added_effect)
+
+		return effective_stats
 
 
 class Pole(BaseItem):
@@ -122,10 +126,14 @@ class MagicCauldron(BaseItem):
 			Stats: The new character stats after equipping the item.
 		"""
 
+		effective_stats = self.base_item_stats
+
 		if self.is_passive_active:
-			return self.base_item_stats._replace(current_hp=10 + 1.3 * base_character_stats.total_hp,
-			total_hp=10 + 1.3 * base_character_stats.total_hp)
-		return self.base_item_stats
+			added_effect = Stats(current_hp=10 + 0.3 * base_character_stats.total_hp,
+								 total_hp=10 + 0.3 * base_character_stats.total_hp)
+			effective_stats = effective_stats.add_stat_changes(added_effect)
+
+		return effective_stats
 
 
 class SolidRock(BaseItem):
