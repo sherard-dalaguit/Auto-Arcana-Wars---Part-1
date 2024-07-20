@@ -199,8 +199,6 @@ class BaseCharacter(abc.ABC):
 			effective_stats (Stats): current stats after applying items;
 			items (list[BaseItem]): items held by the character
 		"""
-		if items is None:
-			items = []
 
 		self.base_stats = base_stats
 		self.added_item_stats = added_item_stats
@@ -209,7 +207,7 @@ class BaseCharacter(abc.ABC):
 			self.effective_stats = deepcopy(base_stats)
 		else:
 			self.effective_stats = effective_stats
-		self.items = items
+		self.items = items if items is not None else []
 
 	@property
 	@abc.abstractmethod
@@ -228,10 +226,10 @@ class BaseCharacter(abc.ABC):
 		pass
 
 	@abc.abstractmethod
-	def special_attack(self):
+	def special_attack(self) -> float:
 		pass
 
-	def add_item(self, item: BaseItem) -> None:
+	def add_item(self, item: BaseItem = None) -> None:
 		"""
 		Adds an item to the character's inventory and updates the effective stats
 		with the effective item stats. If the character already has 3 items or
@@ -249,10 +247,16 @@ class BaseCharacter(abc.ABC):
 			stats of the added item. This means the added_item_stats represent the cumulative
 			impact of all items so far added to the character, based on their effective stats.
 		"""
-		if item.is_unique_passive and self.items.count(item) > 1:  # Checks if character already has item
+
+		if item is None:
+			raise ValueError("Cannot add None as an item")
+
+		# Counts how many of each item type are held by the character
+		same_item_count = len(list(filter(lambda x: x.name == item.name, self.items)))
+		if item.is_unique_passive and same_item_count > 1:  # Checks if character already has item
 			item.is_passive_active = False  # Removes item's special ability if item is unique passive
 
-		if len(self.items) > 3:
+		if len(self.items) >= 3:
 			raise ValueError('Too many items')
 		else:
 			self.items.append(item)
