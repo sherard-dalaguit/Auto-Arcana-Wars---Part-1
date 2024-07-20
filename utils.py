@@ -207,6 +207,7 @@ class BaseCharacter(abc.ABC):
 			self.effective_stats = deepcopy(base_stats)
 		else:
 			self.effective_stats = effective_stats
+
 		self.items = items if items is not None else []
 
 	@property
@@ -258,12 +259,10 @@ class BaseCharacter(abc.ABC):
 
 		if len(self.items) >= 3:
 			raise ValueError('Too many items')
-		else:
-			self.items.append(item)
-
-		self.effective_stats = self.base_stats  # Reset effective stats to base stats
+		self.items.append(item)
 
 		self.added_item_stats = self.added_item_stats.add_stat_changes(item.calculate_effective_stats(self.base_stats))
+		self.effective_stats = self.base_stats  # Reset effective stats to base stats
 
 		# Calculate effective stats for each item
 		for item in self.items:
