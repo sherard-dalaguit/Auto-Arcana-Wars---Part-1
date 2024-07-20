@@ -6,13 +6,13 @@ from items import EnchantedSword, ShinyStaff, Pole, MagicCauldron, SolidRock
 from utils import Stats, BaseItem, BaseCharacter
 
 
-character_classes: Dict[str, Type[BaseCharacter]] = {
+name_to_character_class: Dict[str, Type[BaseCharacter]] = {
     'ninja': Ninja,
     'mage': Mage,
     'warrior': Warrior
 }
 
-item_classes: Dict[str, Type[BaseItem]] = {
+name_to_item_class: Dict[str, Type[BaseItem]] = {
     'enchanted_sword': EnchantedSword,
     'shiny_staff': ShinyStaff,
     'pole': Pole,
@@ -38,11 +38,11 @@ def create_character(character_data: dict) -> BaseCharacter:
     stats_dict['current_hp'] = stats_dict['total_hp'] = float(stats_dict.pop('hp'))
 
     # Makes sure everything is a float, doesn't change its values though
-    stats_dict = {character_attribute: float(value) for character_attribute, value in stats_dict.items()}
+    stats_dict = {stat_name: float(value) for stat_name, value in stats_dict.items()}
 
     base_stats = Stats(**stats_dict)
     character_name = character_data['character']['name']
-    character_class = character_classes.get(character_name)
+    character_class = name_to_character_class.get(character_name)
 
     if not character_class:
         raise ValueError(f"Unknown character type: {character_name}")
@@ -68,12 +68,12 @@ def create_item(item_data: dict) -> BaseItem:
         item_stats_dict['current_hp'] = item_stats_dict['total_hp'] = float(item_stats_dict.pop('hp', 0))
 
     # Makes sure everything is a float, doesn't change its values though
-    item_stats_dict = {item_attribute: float(value) for item_attribute, value in item_stats_dict.items()}
+    item_stats_dict = {stat_name: float(value) for stat_name, value in item_stats_dict.items()}
 
     item_base_stats = Stats(**item_stats_dict)
 
     item_name = item_data['name']
-    item_class = item_classes.get(item_name)
+    item_class = name_to_item_class.get(item_name)
 
     if not item_class:
         raise ValueError(f"Unknown item type: {item_name}")
@@ -94,10 +94,10 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
     print(team_assignment.resolve())
 
     with team_assignment.open() as open_file:
-        file_data = json.load(open_file)
+        team_data = json.load(open_file)
 
     character_list = []
-    for character_data in file_data:
+    for character_data in team_data:
         character = create_character(character_data)
 
         if 'items' in character_data:
