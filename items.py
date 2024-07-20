@@ -14,6 +14,21 @@ class EnchantedSword(BaseItem):
 		"""Returns whether an item has a unique passive effect."""
 		return True
 
+	def get_stats(self) -> str:
+		"""
+		Overridden from BaseItem.
+
+		This method returns a string illustrating the specific stats of an EnchantedSword item.
+
+		This method is used in the 'game.py', within the 'print_character_list()' function
+		to print the stats of each item	owned by a character in a readable format.
+
+		Returns:
+			A string containing the stats of the EnchantedSword.
+		"""
+		return (f"Physical Power: {self.base_item_stats.physical_power}\n"
+				f"						Magic Power: {self.base_item_stats.magic_power}")
+
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
 		Calculates the effective stats after equipping the item.
@@ -45,6 +60,21 @@ class ShinyStaff(BaseItem):
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return False
+
+	def get_stats(self) -> str:
+		"""
+		Overridden from BaseItem.
+
+		This method returns a string illustrating the specific stats of a ShinyStaff item.
+
+		This method is used in the 'game.py', within the 'print_character_list()' function
+		to print the stats of each item	owned by a character in a readable format.
+
+		Returns:
+			A string containing the stats of the ShinyStaff.
+		"""
+		return (f"Physical Power: {self.base_item_stats.physical_power}\n"
+				f"						Magic Power: {self.base_item_stats.magic_power}")
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
@@ -82,6 +112,21 @@ class Pole(BaseItem):
 		"""Returns whether an item has a unique passive effect."""
 		return False
 
+	def get_stats(self) -> str:
+		"""
+		Overridden from BaseItem.
+
+		This method returns a string illustrating the specific stats of a Pole item.
+
+		This method is used in the 'game.py', within the 'print_character_list()' function
+		to print the stats of each item	owned by a character in a readable format.
+
+		Returns:
+			A string containing the stats of the Pole.
+		"""
+		return (f"Physical Power: {self.base_item_stats.physical_power}\n"
+				f"						Magic Power: {self.base_item_stats.magic_power}")
+
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
 		Calculates the effective stats after equipping the item.
@@ -111,6 +156,20 @@ class MagicCauldron(BaseItem):
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return True
+
+	def get_stats(self) -> str:
+		"""
+		Overridden from BaseItem.
+
+		This method returns a string illustrating the specific stats of a MagicCauldron item.
+
+		This method is used in the 'game.py', within the 'print_character_list()' function
+		to print the stats of each item	owned by a character in a readable format.
+
+		Returns:
+			A string containing the stats of the MagicCauldron.
+		"""
+		return f"HP: {self.base_item_stats.current_hp}"
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
@@ -148,6 +207,21 @@ class SolidRock(BaseItem):
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return False
+
+	def get_stats(self) -> str:
+		"""
+		Overridden from BaseItem.
+
+		This method returns a string illustrating the specific stats of an EnchantedSword item.
+
+		This method is used in the 'game.py', within the 'print_character_list()' function
+		to print the stats of each item	owned by a character in a readable format.
+
+		Returns:
+			A string containing the stats of the EnchantedSword.
+		"""
+		return (f"Armor: {self.base_item_stats.armor}\n"
+				f"						Magic Resistance: {self.base_item_stats.magic_resistance}")
 
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""

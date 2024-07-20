@@ -128,6 +128,17 @@ class BaseItem(abc.ABC):
 		pass
 
 	@abc.abstractmethod
+	def get_stats(self) -> str:
+		"""
+		Abstract method for subclasses to override.
+
+        This method should return a string representation of the item's stats.
+        In each subclass, this method should concatenate the different attributes into a single string
+        that illustrates the specific stats of the item.
+        """
+		pass
+
+	@abc.abstractmethod
 	def calculate_effective_stats(self, base_character_stats: Stats) -> Stats:
 		"""
 		Abstract method to calculate effective statistics.
