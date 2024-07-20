@@ -15,7 +15,10 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
     character_list = []
     for character_data in file_data:
         stats_dict = character_data['character']['stats']
-        stats_dict['current_hp'] = stats_dict['total_hp'] = stats_dict.pop('hp')
+        stats_dict['current_hp'] = stats_dict['total_hp'] = float(stats_dict.pop('hp'))
+
+        # Makes sure everything is a float, doesn't change its values though
+        stats_dict = {character_attribute: float(value) for character_attribute, value in stats_dict.items()}
 
         base_stats = Stats(**stats_dict)
         if character_data['character']['name'] == 'ninja':
@@ -32,7 +35,10 @@ def read_data(team_assignment: Path) -> List[BaseCharacter]:
                 item_stats_dict = item_data['stats']
 
                 if item_data['name'] == 'magic_cauldron':
-                    item_stats_dict['current_hp'] = item_stats_dict['total_hp'] = item_stats_dict.pop('hp', 0)
+                    item_stats_dict['current_hp'] = item_stats_dict['total_hp'] = float(item_stats_dict.pop('hp', 0))
+
+                # Makes sure everything is a float, doesn't change its values though
+                item_stats_dict = {item_attribute: float(value) for item_attribute, value in item_stats_dict.items()}
 
                 item_base_stats = Stats(**item_stats_dict)
 
