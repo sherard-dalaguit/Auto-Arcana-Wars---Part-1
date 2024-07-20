@@ -233,16 +233,22 @@ class BaseCharacter(abc.ABC):
 
 	def add_item(self, item: BaseItem) -> None:
 		"""
-		Adds an item to the character's inventory, updates the effective stats
-        with the added item stats. If the character already has 3 items, raises
-		an exception.
+		Adds an item to the character's inventory and updates the effective stats
+		with the effective item stats. If the character already has 3 items or
+		if the item has a unique passive which is already active, raises an exception.
 
-        Args:
-            item (BaseItem): Item to be added.
+		Args:
+			item (BaseItem): Item to be added which affects effective stats.
 
 		Raises:
-	        ValueError: If character has already 3 items.
-        """
+			ValueError:
+				If character already has 3 items or if item's unique passive is already active.
+
+		Notes:
+			This method modifies the character's added_item_stats to account for the effective
+			stats of the added item. This means the added_item_stats represent the cumulative
+			impact of all items so far added to the character, based on their effective stats.
+		"""
 		if item.is_unique_passive and self.items.count(item) > 1:  # Checks if character already has item
 			item.is_passive_active = False  # Removes item's special ability if item is unique passive
 
@@ -252,7 +258,8 @@ class BaseCharacter(abc.ABC):
 			self.items.append(item)
 
 		self.effective_stats = self.base_stats  # Reset effective stats to base stats
-		self.added_item_stats = self.added_item_stats.add_stat_changes(item.base_item_stats)
+
+		self.added_item_stats = self.added_item_stats.add_stat_changes(item.calculate_effective_stats(self.base_stats))
 
 		# Calculate effective stats for each item
 		for item in self.items:
