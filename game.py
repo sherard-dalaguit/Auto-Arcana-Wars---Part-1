@@ -6,7 +6,7 @@ from items import EnchantedSword, ShinyStaff, Pole, MagicCauldron, SolidRock
 from utils import Stats, BaseItem, BaseCharacter
 
 
-character_classes = {
+character_classes: Dict[str, Type[BaseCharacter]] = {
     'ninja': Ninja,
     'mage': Mage,
     'warrior': Warrior
