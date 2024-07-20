@@ -2,14 +2,17 @@ from utils import Stats, BaseItem
 
 
 class EnchantedSword(BaseItem):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the item."""
 		return "Enchanted Sword"
 
+	@property
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: Lucky Strike"
 
+	@property
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return True
@@ -49,14 +52,17 @@ class EnchantedSword(BaseItem):
 
 
 class ShinyStaff(BaseItem):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the item."""
 		return "Shiny Staff"
 
+	@property
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: Blessings of Echo"
 
+	@property
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return False
@@ -100,14 +106,17 @@ class ShinyStaff(BaseItem):
 
 
 class Pole(BaseItem):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the item."""
 		return "Pole"
 
+	@property
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: No passive abilities"
 
+	@property
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return False
@@ -145,14 +154,17 @@ class Pole(BaseItem):
 
 
 class MagicCauldron(BaseItem):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the item."""
 		return "Magic Cauldron"
 
+	@property
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: Potion of Life"
 
+	@property
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return True
@@ -196,14 +208,17 @@ class MagicCauldron(BaseItem):
 
 
 class SolidRock(BaseItem):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the item."""
 		return "Solid Rock"
 
+	@property
 	def passive_name(self) -> str:
 		"""Returns the name of the item and its special ability."""
 		return f"{self.name}: No passive abilities"
 
+	@property
 	def is_unique_passive(self) -> bool:
 		"""Returns whether an item has a unique passive effect."""
 		return False

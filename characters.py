@@ -2,10 +2,12 @@ from utils import BaseCharacter
 
 
 class Ninja(BaseCharacter):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the character."""
 		return "Ninja"
 
+	@property
 	def special_attack_name(self) -> str:
 		"""Returns the name of the character and its special attack."""
 		return f"{self.name}: A poisoned dagger shot"
@@ -27,10 +29,12 @@ class Ninja(BaseCharacter):
 
 
 class Mage(BaseCharacter):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the character."""
 		return "Mage"
 
+	@property
 	def special_attack_name(self) -> str:
 		"""Returns the name of the character and its special attack."""
 		return f"{self.name}: A lullaby to deep sleep"
@@ -52,10 +56,12 @@ class Mage(BaseCharacter):
 
 
 class Warrior(BaseCharacter):
+	@property
 	def name(self) -> str:
 		"""Returns the name of the character."""
 		return "Warrior"
 
+	@property
 	def special_attack_name(self) -> str:
 		"""Returns the name of the character and its special attack."""
 		return f"{self.name}: A call to the shield hero"
